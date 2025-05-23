@@ -1,6 +1,6 @@
 <?php
 
-namespace Danny50610\LaravelOpenTelemetry;
+namespace Danny50610\LaravelOpenTelemetry\Logger;
 
 use Illuminate\Log\ParsesLogConfiguration;
 use Illuminate\Support\Facades\App;
@@ -13,13 +13,15 @@ class OpenTelemetryLogger
 
     public function __invoke(array $config): Logger
     {
+        $handler = new \OpenTelemetry\Contrib\Logs\Monolog\Handler(
+            Globals::loggerProvider(),
+            $this->level($config),
+        );
+
         return new Logger(
             $this->parseChannel($config),
             [
-                new \OpenTelemetry\Contrib\Logs\Monolog\Handler(
-                    Globals::loggerProvider(),
-                    $this->level($config),
-                )
+                $handler,
             ]
         );
     }

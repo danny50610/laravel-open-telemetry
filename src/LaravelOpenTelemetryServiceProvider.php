@@ -48,9 +48,7 @@ class LaravelOpenTelemetryServiceProvider extends ServiceProvider
         $otlpProtocol = config('open-telemetry.otlp.protocol');
         $otlpEndpoint = Str::finish(config('open-telemetry.otlp.endpoint'), '/');
 
-        // TODO: TRACE_ID, SPAN_ID ?
-
-        $resource = ResourceInfoFactory::emptyResource()->merge(ResourceInfo::create(Attributes::create([
+        $resource = ResourceInfoFactory::defaultResource()->merge(ResourceInfo::create(Attributes::create([
             ResourceAttributes::SERVICE_NAME => config('app.name'),
         ])));
 
