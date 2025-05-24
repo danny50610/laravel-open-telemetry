@@ -31,6 +31,9 @@
             "providers": [
                 "Danny50610\\LaravelOpenTelemetry\\LaravelOpenTelemetryServiceProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-main": "0.x-dev"
         }
     },
     "authors": [
